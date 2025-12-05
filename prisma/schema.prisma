@@ -76,8 +76,9 @@ model Goal {
 }
 
 model Event {
-  id        String   @id @default(cuid(2))
-  timestamp DateTime @default(now())
+  id          String   @id @default(cuid(2))
+  timestamp   DateTime @default(now())
+  description String?
 
   goal   Goal   @relation(fields: [goalId], references: [id])
   goalId String
