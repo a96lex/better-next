@@ -7,7 +7,6 @@ import { getServerAuthSession } from "@/app/lib/auth";
 export const createTRPCContext = async (opts?: { req?: Request }) => {
   const session = await getServerAuthSession();
 
-  console.log("fucking shit session on createTRPCContext", session);
   return {
     db: prisma,
     headers: opts?.req?.headers,
@@ -36,14 +35,12 @@ export const createTRPCRouter = t.router;
 export const publicProcedure = t.procedure;
 
 export const protectedProcedure = t.procedure.use(async ({ ctx, next }) => {
-  console.log("i am isnide the session", ctx?.session);
   if (!ctx.session || !ctx.session.user) {
     throw new TRPCError({ code: "UNAUTHORIZED" });
   }
 
   return next({
     ctx: {
-      // infers the `session` as non-nullable
       session: { ...ctx.session, user: ctx.session.user },
     },
   });

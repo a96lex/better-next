@@ -22,8 +22,8 @@ export const goalRouter = createTRPCRouter({
   get: protectedProcedure
     .input(z.object({ goalId: z.string() }))
     .query(async ({ ctx, input }) => {
-      const goal = await ctx.db.goal.findMany({
-        where: { userId: ctx.session.user.id, id: input.goalId },
+      const goal = await ctx.db.goal.findUnique({
+        where: { id: input.goalId, userId: ctx.session.user.id },
         include: { events: true },
       });
       return goal;
@@ -37,7 +37,6 @@ export const goalRouter = createTRPCRouter({
       })
     )
     .mutation(async ({ ctx, input }) => {
-      console.log({ userId: ctx.session });
       const goal = await ctx.db.goal.create({
         data: {
           userId: ctx.session.user.id,
