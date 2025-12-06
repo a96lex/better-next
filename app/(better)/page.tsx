@@ -4,10 +4,12 @@ import { signOut } from "next-auth/react";
 import { api } from "@/app/lib/trpc/client";
 import { useState } from "react";
 import { RotateCcw } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function Home() {
   const [newGoalName, setNewGoalName] = useState("");
   const [newGoalDescription, setNewGoalDescription] = useState("");
+  const t = useTranslations("goalList");
 
   const utils = api.useUtils();
 
@@ -36,7 +38,7 @@ export default function Home() {
   return (
     <div className="min-h-screen p-4">
       <button onClick={() => signOut()}>signout</button>
-      <h1>Tus contadores</h1>
+      <h1>{t("header")}</h1>
       <div className="grid grid-cols-2 gap-4">
         {goals?.map((g, idx) => {
           return (
@@ -65,7 +67,7 @@ export default function Home() {
         value={newGoalDescription}
         onChange={(e) => setNewGoalDescription(e.target.value)}
       />
-      <button onClick={() => handleCreateGoal()}>create goal</button>
+      <button onClick={() => handleCreateGoal()}>{t("create")}</button>
     </div>
   );
 }

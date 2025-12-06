@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { TRPCProvider } from "@/app/lib/trpc/provider";
+import { NextIntlClientProvider } from "next-intl";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -21,10 +22,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${poppins.variable} antialiased`}
-      >
-        <TRPCProvider>{children}</TRPCProvider>
+      <body className={`${poppins.variable} antialiased`}>
+        <NextIntlClientProvider>
+          <TRPCProvider>{children}</TRPCProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );
