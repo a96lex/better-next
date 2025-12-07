@@ -1,6 +1,15 @@
 {
-  "goalList": {
-    "header": "Tus metas",
-    "create": "Nueva meta"
+  "goal": {
+    "list": {
+      "header": "Tus metas"
+    },
+    "create": {
+      "new": "Nueva meta",
+      "create": "Crear meta",
+      "name": "Nombre",
+      "description": "Descripción",
+      "date": "Fecha",
+      "time": "Hora"
+    }
   }
 }

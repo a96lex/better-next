@@ -1,6 +1,15 @@
 {
-  "goalList": {
-    "header": "Your goals",
-    "create": "New goals"
+  "goal": {
+    "list": {
+      "header": "Your goals"
+    },
+    "create": {
+      "new": "New goal",
+      "create": "Create goal",
+      "name": "Name",
+      "description": "Description",
+      "date": "Date",
+      "time": "Time"
+    }
   }
 }
