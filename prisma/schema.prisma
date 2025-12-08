@@ -80,7 +80,7 @@ model Event {
   timestamp   DateTime @default(now())
   description String?
 
-  goal   Goal   @relation(fields: [goalId], references: [id])
+  goal   Goal   @relation(fields: [goalId], references: [id], onDelete: Cascade)
   goalId String
 
   createdAt DateTime @default(now())
