@@ -1,9 +1,14 @@
 import { z } from "zod";
 import { createTRPCRouter, protectedProcedure } from "../trpc";
+import { Goal } from "@/app/generated/prisma/client";
+
+export type ExpandedGoal = Goal & {
+  events: { timestamp: Date }[];
+};
 
 export const goalRouter = createTRPCRouter({
   getAll: protectedProcedure.query(async ({ ctx }) => {
-    const goals = await ctx.db.goal.findMany({
+    const goals: ExpandedGoal[] = await ctx.db.goal.findMany({
       where: { userId: ctx.session.user.id },
       include: {
         events: {
