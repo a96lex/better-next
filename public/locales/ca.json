@@ -1,13 +1,15 @@
 {
   "goal": {
     "list": {
-      "header": "Les teves metes"
+      "header": "Les teves metes",
+      "empty": "Encara no tens cap meta",
+      "days": "Díes"
     },
     "create": {
       "new": "Nova meta",
       "create": "Crear meta",
       "name": "Nom",
-      "description": "Descripció",
+      "description": "Nota",
       "date": "Data",
       "time": "Hora"
     }

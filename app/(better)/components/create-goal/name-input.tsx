@@ -14,13 +14,13 @@ export default function NameInput({
   const [focus, setFocus] = useState(false);
 
   return (
-    <>
+    <div>
       <Input
         value={value}
         onChange={(e) => setValue(e.target.value)}
         id="goalName"
         placeholder={t("name")}
-        className="mt-16 border-none border-slate-400 text-2xl shadow-none ring-0!"
+        className="mt-16 border-none border-slate-400 text-2xl! shadow-none ring-0!"
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
       />
@@ -31,6 +31,6 @@ export default function NameInput({
           focus && "scale-y-300"
         )}
       />
-    </>
+    </div>
   );
 }

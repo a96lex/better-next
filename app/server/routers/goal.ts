@@ -34,6 +34,7 @@ export const goalRouter = createTRPCRouter({
       z.object({
         name: z.string(),
         description: z.string().nullable(),
+        date: z.date().optional(),
       })
     )
     .mutation(async ({ ctx, input }) => {
@@ -44,6 +45,14 @@ export const goalRouter = createTRPCRouter({
           description: input.description,
         },
       });
+      if (input.date) {
+        await ctx.db.event.create({
+          data: {
+            goalId: goal.id,
+            timestamp: input.date,
+          },
+        });
+      }
       return goal;
     }),
 

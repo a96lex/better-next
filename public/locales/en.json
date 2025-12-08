@@ -1,13 +1,15 @@
 {
   "goal": {
     "list": {
-      "header": "Your goals"
+      "header": "Your goals",
+      "empty": "You have no goals yet",
+      "days": "Days"
     },
     "create": {
       "new": "New goal",
       "create": "Create goal",
       "name": "Name",
-      "description": "Description",
+      "description": "Note",
       "date": "Date",
       "time": "Time"
     }

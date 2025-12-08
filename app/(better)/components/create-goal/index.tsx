@@ -29,6 +29,7 @@ export default function CreateGoal() {
       {
         name: newGoalName,
         description: newGoalDescription ?? null,
+        date: date,
       },
       {
         onSuccess: () => {
@@ -52,7 +53,7 @@ export default function CreateGoal() {
         </Button>
       </DialogTrigger>
       <DialogContent
-        className="flex h-[calc(100%-2rem)] w-full flex-col items-stretch gap-2 border-none bg-slate-100 pt-2"
+        className="flex h-[calc(100%-2rem)] w-[calc(100%-2rem)]! max-w-none! flex-col items-stretch gap-8 border-none pt-2"
         showCloseButton={false}
       >
         <div className="absolute top-0 left-0 flex w-full justify-between px-6 py-4">
@@ -66,12 +67,15 @@ export default function CreateGoal() {
         <NameInput value={newGoalName} setValue={setNewGoalName} />
         <DateTimeInput date={date} setDate={setDate} />
         <DialogTitle className="sr-only">{t("new")}</DialogTitle>
-        <Label htmlFor="description">{t("description")}</Label>
-        <Input
-          value={newGoalDescription}
-          onChange={(e) => setNewGoalDescription(e.target.value)}
-          id="description"
-        />
+        <div className="space-y-4">
+          <Label htmlFor="description">{t("description")}</Label>
+          <Input
+            value={newGoalDescription}
+            onChange={(e) => setNewGoalDescription(e.target.value)}
+            id="description"
+            className="bg-accent"
+          />
+        </div>
       </DialogContent>
     </Dialog>
   );

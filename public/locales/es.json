@@ -1,13 +1,15 @@
 {
   "goal": {
     "list": {
-      "header": "Tus metas"
+      "header": "Tus metas",
+      "empty": "Todavía no tienes metas",
+      "days": "Días"
     },
     "create": {
       "new": "Nueva meta",
       "create": "Crear meta",
       "name": "Nombre",
-      "description": "Descripción",
+      "description": "Nota",
       "date": "Fecha",
       "time": "Hora"
     }
