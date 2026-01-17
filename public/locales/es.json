@@ -3,7 +3,13 @@
     "list": {
       "header": "Tus metas",
       "empty": "Todavía no tienes metas",
-      "days": "Días"
+      "days": "Días",
+      "history": "Historial",
+      "addEvent": "Nuevo evento",
+      "back": "Volver a metas",
+      "eventHistory": "Historial de Eventos",
+      "noEvents": "Todavía no hay eventos",
+      "daysAgo": "días atrás"
     },
     "create": {
       "new": "Nueva meta",
@@ -12,6 +18,27 @@
       "description": "Nota",
       "date": "Fecha",
       "time": "Hora"
+    },
+    "event": {
+      "newEventHeader": "Nuevo evento para",
+      "create": "Añadir",
+      "note": "Añade una nota"
+    },
+    "edit": {
+      "title": "Editar Meta",
+      "save": "Guardar",
+      "name": "Nombre",
+      "namePlaceholder": "Nombre de la meta",
+      "description": "Descripción",
+      "descriptionPlaceholder": "Descripción (opcional)"
+    }
+  },
+  "event": {
+    "create": {
+      "new": "Nuevo Evento",
+      "add": "Añadir",
+      "description": "Descripción",
+      "descriptionPlaceholder": "Añade una nota (opcional)"
     }
   }
 }

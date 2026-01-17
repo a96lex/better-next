@@ -1,21 +1,23 @@
 import { z } from "zod";
 import { createTRPCRouter, protectedProcedure } from "../trpc";
-import { Goal } from "@/app/generated/prisma/client";
+import { inferRouterOutputs } from "@trpc/server";
 
-export type ExpandedGoal = Goal & {
-  events: { timestamp: Date }[];
-};
+type GoalRouterOutput = inferRouterOutputs<typeof goalRouter>;
+
+export type GoalListOutput = GoalRouterOutput["getAll"];
+export type ExpandedGoal = GoalListOutput[number];
 
 export const goalRouter = createTRPCRouter({
   getAll: protectedProcedure.query(async ({ ctx }) => {
-    const goals: ExpandedGoal[] = await ctx.db.goal.findMany({
+    const goals = await ctx.db.goal.findMany({
       where: { userId: ctx.session.user.id },
       include: {
         events: {
           orderBy: { timestamp: "desc" },
-          take: 1,
           select: {
+            id: true,
             timestamp: true,
+            description: true,
           },
         },
       },
@@ -40,6 +42,7 @@ export const goalRouter = createTRPCRouter({
         name: z.string(),
         description: z.string().nullable(),
         date: z.date().optional(),
+        eventNote: z.string().nullable().optional(),
       })
     )
     .mutation(async ({ ctx, input }) => {
@@ -55,6 +58,7 @@ export const goalRouter = createTRPCRouter({
           data: {
             goalId: goal.id,
             timestamp: input.date,
+            description: input.eventNote,
           },
         });
       }
@@ -95,6 +99,7 @@ export const goalRouter = createTRPCRouter({
       z.object({
         goalId: z.string(),
         timestamp: z.date().nullable(),
+        description: z.string().nullable(),
       })
     )
     .mutation(async ({ ctx, input }) => {
@@ -106,6 +111,7 @@ export const goalRouter = createTRPCRouter({
         data: {
           goalId: goal.id,
           timestamp: input.timestamp ?? undefined,
+          description: input.description,
         },
       });
       return event;

@@ -3,7 +3,13 @@
     "list": {
       "header": "Les teves metes",
       "empty": "Encara no tens cap meta",
-      "days": "Díes"
+      "days": "Dies",
+      "history": "Historial",
+      "addEvent": "Nou event",
+      "back": "Tornar a metes",
+      "eventHistory": "Historial d'Events",
+      "noEvents": "Encara no hi ha events",
+      "daysAgo": "dies enrere"
     },
     "create": {
       "new": "Nova meta",
@@ -12,6 +18,27 @@
       "description": "Nota",
       "date": "Data",
       "time": "Hora"
+    },
+    "event": {
+      "newEventHeader": "Nou event per a",
+      "create": "Afegir",
+      "note": "Afegeix una nota"
+    },
+    "edit": {
+      "title": "Editar Meta",
+      "save": "Desar",
+      "name": "Nom",
+      "namePlaceholder": "Nom de la meta",
+      "description": "Descripció",
+      "descriptionPlaceholder": "Descripció (opcional)"
+    }
+  },
+  "event": {
+    "create": {
+      "new": "Nou Event",
+      "add": "Afegir",
+      "description": "Descripció",
+      "descriptionPlaceholder": "Afegeix una nota (opcional)"
     }
   }
 }

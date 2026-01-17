@@ -1,17 +1,32 @@
 {
   "goal": {
     "list": {
-      "header": "Your goals",
-      "empty": "You have no goals yet",
-      "days": "Days"
+      "addEvent": "New event",
+      "back": "Back to goals",
+      "eventHistory": "Event History",
+      "noEvents": "No events yet",
+      "daysAgo": "days ago"
     },
-    "create": {
-      "new": "New goal",
-      "create": "Create goal",
+    "event": {
+      "newEventHeader": "New event for",
+      "create": "Add",
+      "note": "Add a note"
+    },
+    "edit": {
+      "title": "Edit Goal",
+      "save": "Save",
       "name": "Name",
-      "description": "Note",
-      "date": "Date",
-      "time": "Time"
+      "namePlaceholder": "Goal name",
+      "description": "Description",
+      "descriptionPlaceholder": "Description (optional)"
+    }
+  },
+  "event": {
+    "create": {
+      "new": "New Event",
+      "add": "Add",
+      "description": "Description",
+      "descriptionPlaceholder": "Add a note (optional)"
     }
   }
 }

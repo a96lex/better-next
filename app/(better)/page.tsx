@@ -15,7 +15,7 @@ export default function Home() {
     <div className="min-h-screen p-4">
       <button onClick={() => signOut()}>signout</button>
       <h1>{t("header")}</h1>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4">
         {goals?.length ? (
           goals.map((g, idx) => {
             return <GoalItem key={g.id} idx={idx} goal={g} />;

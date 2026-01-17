@@ -1,24 +1,19 @@
+"use client";
+
 import { api } from "@/app/lib/trpc/client";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import {
-  Dialog,
-  DialogContent,
-  DialogTrigger,
-  DialogClose,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ArrowLeftIcon, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import NameInput from "./name-input";
-import DateTimeInput from "./date-input";
+import ModalWrapper from "../shared/modal-wrapper";
 
 export default function CreateGoal() {
   const [newGoalName, setNewGoalName] = useState("");
   const [newGoalDescription, setNewGoalDescription] = useState("");
-  const [date, setDate] = useState<Date | undefined>(new Date());
   const [open, setOpen] = useState(false);
   const utils = api.useUtils();
   const t = useTranslations("goal.create");
@@ -29,7 +24,6 @@ export default function CreateGoal() {
       {
         name: newGoalName,
         description: newGoalDescription ?? null,
-        date: date,
       },
       {
         onSuccess: () => {
@@ -44,39 +38,35 @@ export default function CreateGoal() {
       }
     );
   };
+
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button className="fixed bottom-2 left-1/2 -translate-x-1/2 rounded-full">
-          <Plus />
-          {t("new")}
-        </Button>
-      </DialogTrigger>
-      <DialogContent
-        className="flex h-[calc(100%-2rem)] w-[calc(100%-2rem)]! max-w-none! flex-col items-stretch gap-8 border-none pt-2"
-        showCloseButton={false}
-      >
-        <div className="absolute top-0 left-0 flex w-full justify-between px-6 py-4">
-          <DialogClose className="text-slate-500">
-            <ArrowLeftIcon className="size-5" />
-          </DialogClose>
-          <Button className="rounded-full" onClick={() => handleCreateGoal()}>
-            {t("create")}
+    <ModalWrapper
+      open={open}
+      onOpenChange={setOpen}
+      title={t("new")}
+      actionLabel={t("create")}
+      onAction={handleCreateGoal}
+      trigger={
+        <DialogTrigger asChild>
+          <Button
+            size="lg"
+            className="fixed right-6 bottom-6 h-14 w-14 rounded-full p-0 shadow-lg"
+          >
+            <Plus className="h-6 w-6" />
           </Button>
-        </div>
-        <NameInput value={newGoalName} setValue={setNewGoalName} />
-        <DateTimeInput date={date} setDate={setDate} />
-        <DialogTitle className="sr-only">{t("new")}</DialogTitle>
-        <div className="space-y-4">
-          <Label htmlFor="description">{t("description")}</Label>
-          <Input
-            value={newGoalDescription}
-            onChange={(e) => setNewGoalDescription(e.target.value)}
-            id="description"
-            className="bg-accent"
-          />
-        </div>
-      </DialogContent>
-    </Dialog>
+        </DialogTrigger>
+      }
+    >
+      <NameInput value={newGoalName} setValue={setNewGoalName} />
+      <div className="space-y-4">
+        <Label htmlFor="description">{t("description")}</Label>
+        <Input
+          value={newGoalDescription}
+          onChange={(e) => setNewGoalDescription(e.target.value)}
+          id="description"
+          className="bg-accent"
+        />
+      </div>
+    </ModalWrapper>
   );
 }
