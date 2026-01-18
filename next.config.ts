@@ -3,11 +3,7 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
   turbopack: {},
-  i18n: {
-    locales: ["en-US", "ca-ES", "es-ES"],
-    defaultLocale: "ca-ES",
-  },
 };
 
-const withNextIntl = createNextIntlPlugin();
+const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 export default withNextIntl(nextConfig);

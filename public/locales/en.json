@@ -1,11 +1,22 @@
 {
   "goal": {
     "list": {
+      "header": "Goals",
+      "empty": "No goals yet. Create your first goal!",
+      "days": "days",
       "addEvent": "New event",
       "back": "Back to goals",
       "eventHistory": "Event History",
       "noEvents": "No events yet",
       "daysAgo": "days ago"
+    },
+    "create": {
+      "new": "New Goal",
+      "create": "Create",
+      "name": "Name",
+      "description": "Description",
+      "date": "Date",
+      "time": "Time"
     },
     "event": {
       "newEventHeader": "New event for",
