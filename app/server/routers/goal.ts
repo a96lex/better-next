@@ -21,6 +21,7 @@ export const goalRouter = createTRPCRouter({
           },
         },
       },
+      orderBy: { createdAt: "desc" },
     });
 
     return goals;
