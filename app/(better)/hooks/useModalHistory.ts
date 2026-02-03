@@ -9,7 +9,7 @@ export function useModalHistory(open: boolean, onClose: () => void) {
   useEffect(() => {
     if (!open) return;
 
-    window.history.pushState({ [stateKey]: true }, "");
+    window.history.pushState({ ...window.history.state, [stateKey]: true }, "");
 
     const handleBack = (e: PopStateEvent) => {
       if (!e.state?.[stateKey]) {
@@ -17,10 +17,24 @@ export function useModalHistory(open: boolean, onClose: () => void) {
       }
     };
 
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        const dialogOpen = document.querySelector(
+          '[role="dialog"][data-state="open"]'
+        );
+        if (!dialogOpen) {
+          e.preventDefault();
+          onClose();
+        }
+      }
+    };
+
     window.addEventListener("popstate", handleBack);
+    window.addEventListener("keydown", handleEsc, { capture: true });
 
     return () => {
       window.removeEventListener("popstate", handleBack);
+      window.removeEventListener("keydown", handleEsc, { capture: true });
       if (window.history.state?.[stateKey]) {
         window.history.back();
       }
