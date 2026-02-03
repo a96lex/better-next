@@ -40,5 +40,9 @@
       "description": "Descripció",
       "descriptionPlaceholder": "Afegeix una nota (opcional)"
     }
+  },
+  "profile": {
+    "logout": "Sortir",
+    "title": "Perfil"
   }
 }

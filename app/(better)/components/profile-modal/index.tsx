@@ -3,9 +3,11 @@
 import { useState } from "react";
 import { signOut, useSession } from "next-auth/react";
 import ModalWrapper from "../shared/modal-wrapper";
-import { Menu } from "lucide-react";
+import { Settings } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function ProfileModal() {
+  const t = useTranslations("profile");
   const { data: session } = useSession();
   const [open, setOpen] = useState(false);
 
@@ -21,15 +23,15 @@ export default function ProfileModal() {
     <ModalWrapper
       open={open}
       onOpenChange={setOpen}
-      title="Profile"
-      actionLabel="Logout"
+      title={t("title")}
+      actionLabel={t("logout")}
       onAction={() => signOut()}
       trigger={
         <button
           onClick={() => setOpen(true)}
           className="flex items-center justify-center rounded-full font-semibold transition-opacity hover:opacity-90"
         >
-          <Menu />
+          <Settings />
         </button>
       }
     >

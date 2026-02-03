@@ -13,11 +13,10 @@ export default function Home() {
 
   return (
     <div className="min-h-screen p-4">
-      <div className="mb-4 flex justify-end">
+      <div className="mb-4 flex justify-between">
+        <h1>{t("header")}</h1>
         <ProfileModal />
       </div>
-
-      <h1>{t("header")}</h1>
 
       {isLoading ? (
         <div className="fixed inset-0 flex items-center justify-center">

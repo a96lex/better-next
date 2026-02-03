@@ -39,5 +39,9 @@
       "description": "Description",
       "descriptionPlaceholder": "Add a note (optional)"
     }
+  },
+  "profile": {
+    "logout": "Log out",
+    "title": "Profile"
   }
 }
