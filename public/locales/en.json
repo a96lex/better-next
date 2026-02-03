@@ -8,7 +8,8 @@
       "back": "Back to goals",
       "eventHistory": "Event History",
       "noEvents": "No events yet",
-      "daysAgo": "days ago"
+      "daysAgo": "days ago",
+      "history": "History"
     },
     "create": {
       "new": "New Goal",
