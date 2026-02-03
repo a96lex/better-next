@@ -31,7 +31,7 @@ export default function ModalWrapper({
     <Dialog open={open} onOpenChange={onOpenChange} modal={true}>
       {trigger}
       <DialogContent
-        className="z-60 flex max-h-[80vh] w-[calc(100%-2rem)] max-w-lg flex-col gap-4 p-6"
+        className="flex max-h-[80vh] w-[calc(100%-2rem)] max-w-lg flex-col gap-4 p-6"
         showCloseButton={false}
       >
         <div className="flex w-full items-center justify-between">
