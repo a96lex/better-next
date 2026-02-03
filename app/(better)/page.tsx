@@ -1,10 +1,10 @@
 "use client";
 
-import { signOut } from "next-auth/react";
 import { api } from "@/app/lib/trpc/client";
 import { useTranslations } from "next-intl";
 import CreateGoal from "./components/create-goal";
 import GoalItem from "./components/goal-view";
+import ProfileModal from "./components/profile-modal";
 import { LoaderCircle } from "lucide-react";
 
 export default function Home() {
@@ -13,7 +13,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen p-4">
-      <button onClick={() => signOut()}>signout</button>
+      <div className="mb-4 flex justify-end">
+        <ProfileModal />
+      </div>
 
       <h1>{t("header")}</h1>
 
