@@ -1,7 +1,7 @@
 "use client";
 
 import { api } from "@/app/lib/trpc/client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -37,27 +37,6 @@ export default function EditGoal({ goal, trigger }: EditGoalProps) {
       }
     );
   };
-
-  useEffect(() => {
-    if (!open) return;
-
-    window.history.pushState({ editGoalModalOpen: true }, "");
-
-    const handleBack = (e: PopStateEvent) => {
-      if (!e.state?.editGoalModalOpen) {
-        setOpen(false);
-      }
-    };
-
-    window.addEventListener("popstate", handleBack);
-
-    return () => {
-      window.removeEventListener("popstate", handleBack);
-      if (window.history.state?.editGoalModalOpen) {
-        window.history.back();
-      }
-    };
-  }, [open]);
 
   return (
     <ModalWrapper

@@ -6,6 +6,7 @@ import { differenceInDays, format } from "date-fns";
 import { useTranslations } from "next-intl";
 import { ExpandedGoal } from "@/app/server/routers/goal";
 import { DialogTrigger } from "@/components/ui/dialog";
+import { useModalHistory } from "../../hooks/useModalHistory";
 import AddEvent from "./add-event";
 import EditGoal from "./edit-goal";
 
@@ -38,16 +39,10 @@ export default function GoalItem({
     setTimeout(() => setIsOpen(false), 300);
   };
 
+  useModalHistory(isOpen, handleClose);
+
   useEffect(() => {
     if (!isOpen) return;
-
-    window.history.pushState({ goalModalOpen: true }, "");
-
-    const handleBack = (e: PopStateEvent) => {
-      if (!e.state?.addEventModalOpen && !e.state?.goalModalOpen) {
-        handleClose();
-      }
-    };
 
     const handleEsc = (e: KeyboardEvent) => {
       // Only handle ESC if no Dialog modal is open (Dialog has data-state="open")
@@ -62,18 +57,10 @@ export default function GoalItem({
       }
     };
 
-    window.addEventListener("popstate", handleBack);
     window.addEventListener("keydown", handleEsc, { capture: true });
 
     return () => {
-      window.removeEventListener("popstate", handleBack);
       window.removeEventListener("keydown", handleEsc, { capture: true });
-      if (
-        window.history.state?.goalModalOpen &&
-        !window.history.state?.addEventModalOpen
-      ) {
-        window.history.back();
-      }
     };
   }, [isOpen]);
 

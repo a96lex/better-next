@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Dialog,
   DialogContent,
@@ -7,6 +9,7 @@ import {
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ReactNode } from "react";
+import { useModalHistory } from "../../hooks/useModalHistory";
 
 interface ModalWrapperProps {
   open: boolean;
@@ -27,6 +30,8 @@ export default function ModalWrapper({
   trigger,
   children,
 }: ModalWrapperProps) {
+  useModalHistory(open, () => onOpenChange(false));
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange} modal={true}>
       {trigger}

@@ -1,7 +1,7 @@
 "use client";
 
 import { api } from "@/app/lib/trpc/client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -19,27 +19,6 @@ export default function AddEvent({ goalId, trigger }: AddEventProps) {
   const [open, setOpen] = useState(false);
   const utils = api.useUtils();
   const t = useTranslations("event.create");
-
-  useEffect(() => {
-    if (!open) return;
-
-    window.history.pushState({ addEventModalOpen: true }, "");
-
-    const handleBack = (e: PopStateEvent) => {
-      if (!e.state?.addEventModalOpen) {
-        setOpen(false);
-      }
-    };
-
-    window.addEventListener("popstate", handleBack);
-
-    return () => {
-      window.removeEventListener("popstate", handleBack);
-      if (window.history.state?.addEventModalOpen) {
-        window.history.back();
-      }
-    };
-  }, [open]);
 
   const addEventMutation = api.goal.addEvent.useMutation();
 

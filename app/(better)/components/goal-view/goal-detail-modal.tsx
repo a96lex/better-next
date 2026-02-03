@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { ArrowLeft, RotateCcw } from "lucide-react";
 import { differenceInDays, format } from "date-fns";
 import { useTranslations } from "next-intl";
 import { ExpandedGoal } from "@/app/server/routers/goal";
 import { DialogTrigger } from "@/components/ui/dialog";
+import { useModalHistory } from "../../hooks/useModalHistory";
 import AddEvent from "./add-event";
 
 interface GoalDetailModalProps {
@@ -37,26 +37,10 @@ export default function GoalDetailModal({
     }, 300);
   };
 
+  useModalHistory(true, handleClose);
+
   useEffect(() => {
-    window.history.pushState({ modalOpen: true }, "");
-
-    const handlePopState = (e: PopStateEvent) => {
-      handleClose();
-
-      window.history.pushState({ modalOpen: true }, "");
-    };
-
-    window.addEventListener("popstate", handlePopState);
-
     setTimeout(() => setIsAnimating(false), 50);
-
-    return () => {
-      window.removeEventListener("popstate", handlePopState);
-
-      if (window.history.state?.modalOpen) {
-        window.history.back();
-      }
-    };
   }, []);
 
   const getInitialStyle = () => {
@@ -135,7 +119,7 @@ export default function GoalDetailModal({
               </h3>
               {goal.events && goal.events.length > 0 ? (
                 <div className="space-y-3">
-                  {goal.events.map((event, i) => (
+                  {goal.events.map((event) => (
                     <div
                       key={event.id}
                       className="hover:bg-muted/50 rounded-lg border p-4 transition-colors"
