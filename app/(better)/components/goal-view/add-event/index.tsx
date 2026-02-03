@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { RotateCcw } from "lucide-react";
 import DateTimeInput from "../../create-goal/date-input";
 import ModalWrapper from "../../shared/modal-wrapper";
 
