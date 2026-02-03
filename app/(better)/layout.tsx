@@ -12,7 +12,19 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "Better",
-  description: "My app",
+  description: "Habit tracking",
+  icons: {
+    icon: [
+      { url: "/favicon/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      { url: "/favicon/favicon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon/favicon.ico",
+    apple: { url: "/favicon/apple-touch-icon.png", sizes: "180x180" },
+  },
+  appleWebApp: {
+    title: "Better",
+  },
+  manifest: "/favicon/site.webmanifest",
 };
 
 export default function RootLayout({
