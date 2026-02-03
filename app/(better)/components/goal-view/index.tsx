@@ -2,13 +2,14 @@
 
 import { useState, useEffect, useRef } from "react";
 import { RotateCcw, X, Pencil } from "lucide-react";
-import { differenceInDays, format } from "date-fns";
+import { differenceInDays } from "date-fns";
 import { useTranslations } from "next-intl";
 import { ExpandedGoal } from "@/app/server/routers/goal";
 import { DialogTrigger } from "@/components/ui/dialog";
 import { useModalHistory } from "../../hooks/useModalHistory";
 import AddEvent from "./add-event";
 import EditGoal from "./edit-goal";
+import EventListView from "./views/list";
 
 export default function GoalItem({
   goal,
@@ -135,30 +136,10 @@ export default function GoalItem({
             {goal.events && goal.events.length > 0 && (
               <div>
                 <h3 className="text-muted-foreground mb-3 text-sm font-semibold tracking-wide uppercase">
-                  History
+                  {t("history")}
                 </h3>
-                <div className="space-y-3">
-                  {goal.events.map((event, i) => (
-                    <div key={event.id} className="flex gap-3">
-                      <div className="flex flex-col items-center">
-                        <div className="bg-primary mt-1.5 h-2 w-2 rounded-full" />
-                        {i < goal.events.length - 1 && (
-                          <div className="bg-border mt-1 w-px flex-1" />
-                        )}
-                      </div>
-                      <div className="flex-1 pb-2">
-                        <p className="mb-0.5 text-sm font-medium">
-                          {format(new Date(event.timestamp), "PPP")}
-                        </p>
-                        {event.description && (
-                          <p className="text-muted-foreground text-sm">
-                            {event.description}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <EventListView goal={goal} />
+                <div className="space-y-3"></div>
               </div>
             )}
           </div>
