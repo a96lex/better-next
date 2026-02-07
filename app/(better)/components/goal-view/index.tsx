@@ -1,12 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { RotateCcw, X, Pencil } from "lucide-react";
+import { X } from "lucide-react";
 import { differenceInDays } from "date-fns";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExpandedGoal } from "@/app/server/routers/goal";
-import { DialogTrigger } from "@/components/ui/dialog";
 import { useModalHistory } from "../../hooks/useModalHistory";
 import AddEvent from "./add-event";
 import EditGoal from "./edit-goal";
@@ -30,21 +29,7 @@ export default function GoalItem({
 
   useModalHistory(isOpen, handleClose);
 
-  const addEventButton = (
-    <AddEvent
-      goalId={goal.id}
-      trigger={
-        <DialogTrigger asChild>
-          <button
-            onClick={(e) => e.stopPropagation()}
-            className="bg-foreground/10 hover:bg-foreground/20 flex h-10 w-10 items-center justify-center rounded-full transition-colors"
-          >
-            <RotateCcw className="h-5 w-5" />
-          </button>
-        </DialogTrigger>
-      }
-    />
-  );
+  const addEventButton = <AddEvent goalId={goal.id} />;
 
   return (
     <>
@@ -78,16 +63,7 @@ export default function GoalItem({
                 <div className="flex items-start justify-between gap-2">
                   <h2 className="text-xl font-bold">{goal.name}</h2>
                   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                    <EditGoal
-                      goal={goal}
-                      trigger={
-                        <DialogTrigger asChild>
-                          <button className="hover:bg-foreground/10 rounded-lg p-2">
-                            <Pencil className="h-4 w-4" />
-                          </button>
-                        </DialogTrigger>
-                      }
-                    />
+                    <EditGoal goal={goal} />
                   </motion.div>
                 </div>
                 {goal.description && (

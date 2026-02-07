@@ -7,13 +7,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import DateTimeInput from "../../create-goal/date-input";
 import ModalWrapper from "../../shared/modal-wrapper";
+import { RotateCcw } from "lucide-react";
 
 interface AddEventProps {
   goalId: string;
-  trigger: React.ReactNode;
 }
 
-export default function AddEvent({ goalId, trigger }: AddEventProps) {
+export default function AddEvent({ goalId }: AddEventProps) {
   const [timestamp, setTimestamp] = useState<Date | undefined>(new Date());
   const [description, setDescription] = useState("");
   const [open, setOpen] = useState(false);
@@ -50,7 +50,15 @@ export default function AddEvent({ goalId, trigger }: AddEventProps) {
       title={t("new")}
       actionLabel={t("add")}
       onAction={handleAddEvent}
-      trigger={trigger}
+      trigger={
+        <button
+          onClick={(e) => e.stopPropagation()}
+          className="bg-foreground/10 hover:bg-foreground/20 flex h-10 w-10 items-center justify-center rounded-full transition-colors"
+        >
+          <RotateCcw className="h-5 w-5" />
+        </button>
+      }
+      isPending={addEventMutation.isPending}
     >
       <DateTimeInput date={timestamp} setDate={setTimestamp} />
       <div className="space-y-4">
@@ -61,6 +69,7 @@ export default function AddEvent({ goalId, trigger }: AddEventProps) {
           id="description"
           className="bg-accent"
           placeholder={t("descriptionPlaceholder")}
+          disabled={addEventMutation.isPending}
         />
       </div>
     </ModalWrapper>

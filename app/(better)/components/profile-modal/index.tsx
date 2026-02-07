@@ -34,6 +34,7 @@ export default function ProfileModal() {
           <Settings />
         </button>
       }
+      isPending={false}
     >
       <div className="flex flex-col items-center gap-6 py-4">
         <div className="bg-goal-0 text-goal-foreground-0 flex h-24 w-24 items-center justify-center rounded-full text-3xl font-bold">

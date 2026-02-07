@@ -7,13 +7,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ExpandedGoal } from "@/app/server/routers/goal";
 import ModalWrapper from "../../shared/modal-wrapper";
+import { Pencil } from "lucide-react";
 
 interface EditGoalProps {
   goal: ExpandedGoal;
-  trigger: React.ReactNode;
 }
 
-export default function EditGoal({ goal, trigger }: EditGoalProps) {
+export default function EditGoal({ goal }: EditGoalProps) {
   const [name, setName] = useState(goal.name);
   const [description, setDescription] = useState(goal.description || "");
   const [open, setOpen] = useState(false);
@@ -45,7 +45,12 @@ export default function EditGoal({ goal, trigger }: EditGoalProps) {
       title={t("title")}
       actionLabel={t("save")}
       onAction={handleUpdate}
-      trigger={trigger}
+      trigger={
+        <button className="hover:bg-foreground/10 rounded-lg p-2">
+          <Pencil className="h-4 w-4" />
+        </button>
+      }
+      isPending={updateGoalMutation.isPending}
     >
       <div className="space-y-4">
         <div>
@@ -64,6 +69,7 @@ export default function EditGoal({ goal, trigger }: EditGoalProps) {
             onChange={(e) => setDescription(e.target.value)}
             id="description"
             placeholder={t("descriptionPlaceholder")}
+            disabled={updateGoalMutation.isPending}
           />
         </div>
       </div>

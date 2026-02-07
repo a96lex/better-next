@@ -3,7 +3,6 @@
 import { api } from "@/app/lib/trpc/client";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Plus } from "lucide-react";
@@ -18,9 +17,9 @@ export default function CreateGoal() {
   const utils = api.useUtils();
   const t = useTranslations("goal.create");
 
-  const getMutation = api.goal.create.useMutation();
+  const createGoalMutation = api.goal.create.useMutation();
   const handleCreateGoal = () => {
-    getMutation.mutate(
+    createGoalMutation.mutate(
       {
         name: newGoalName,
         description: newGoalDescription ?? null,
@@ -47,15 +46,14 @@ export default function CreateGoal() {
       actionLabel={t("create")}
       onAction={handleCreateGoal}
       trigger={
-        <DialogTrigger asChild>
-          <Button
-            size="lg"
-            className="fixed right-6 bottom-6 h-14 w-14 rounded-full p-0 shadow-lg"
-          >
-            <Plus className="h-6 w-6" />
-          </Button>
-        </DialogTrigger>
+        <Button
+          size="lg"
+          className="fixed right-6 bottom-6 h-14 w-14 rounded-full p-0 shadow-lg"
+        >
+          <Plus className="h-6 w-6" />
+        </Button>
       }
+      isPending={createGoalMutation.isPending}
     >
       <NameInput value={newGoalName} setValue={setNewGoalName} />
       <div className="space-y-4">

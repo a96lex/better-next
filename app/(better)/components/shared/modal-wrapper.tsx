@@ -5,8 +5,9 @@ import {
   DialogContent,
   DialogClose,
   DialogTitle,
+  DialogTrigger,
 } from "@/components/ui/dialog";
-import { X } from "lucide-react";
+import { X, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ReactNode } from "react";
 import { useModalHistory } from "../../hooks/useModalHistory";
@@ -19,6 +20,7 @@ interface ModalWrapperProps {
   onAction: () => void;
   trigger: ReactNode;
   children: ReactNode;
+  isPending: boolean;
 }
 
 export default function ModalWrapper({
@@ -27,6 +29,7 @@ export default function ModalWrapper({
   title,
   actionLabel,
   onAction,
+  isPending,
   trigger,
   children,
 }: ModalWrapperProps) {
@@ -34,7 +37,7 @@ export default function ModalWrapper({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange} modal={true}>
-      {trigger}
+      <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent
         className="flex max-h-[80vh] w-[calc(100%-2rem)] max-w-lg flex-col gap-4 p-6"
         showCloseButton={false}
@@ -48,8 +51,14 @@ export default function ModalWrapper({
         <DialogTitle className="sr-only">{title}</DialogTitle>
         <div className="flex-1 space-y-4 overflow-auto">{children}</div>
         <div className="flex justify-end">
-          <Button className="rounded-full px-6" onClick={onAction}>
-            {actionLabel}
+          <Button
+            className="rounded-full px-6"
+            onClick={onAction}
+            disabled={isPending}
+          >
+            <>
+              {isPending ? <Loader2 className="animate-spin" /> : actionLabel}
+            </>
           </Button>
         </div>
       </DialogContent>
