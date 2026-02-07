@@ -11,6 +11,7 @@ import { useModalHistory } from "../../hooks/useModalHistory";
 import AddEvent from "./add-event";
 import EditGoal from "./edit-goal";
 import EventListView from "./views/list";
+import EventFrequencyView from "./views/frequency";
 
 export default function GoalItem({
   goal,
@@ -112,7 +113,9 @@ export default function GoalItem({
                   <h3 className="text-muted-foreground mb-3 text-sm font-semibold tracking-wide uppercase">
                     {t("history")}
                   </h3>
-                  <EventListView goal={goal} />
+
+                  <EventFrequencyView goal={goal} />
+                  {/* <EventListView goal={goal} /> */}
                 </div>
               )}
             </motion.div>
