@@ -2,6 +2,7 @@
 
 import { api } from "@/app/lib/trpc/client";
 import { useTranslations } from "next-intl";
+import { useSession } from "next-auth/react";
 import CreateGoal from "./components/create-goal";
 import GoalItem from "./components/goal-view";
 import ProfileModal from "./components/profile-modal";
@@ -10,12 +11,13 @@ import { LoaderCircle } from "lucide-react";
 export default function Home() {
   const t = useTranslations("goal.list");
   const { data: goals, isLoading } = api.goal.getAll.useQuery();
+  const { data: session } = useSession();
 
   return (
     <div className="min-h-screen p-4">
       <div className="mb-4 flex justify-between">
         <h1>{t("header")}</h1>
-        <ProfileModal />
+        {session?.user && <ProfileModal user={session.user} />}
       </div>
 
       {isLoading ? (
