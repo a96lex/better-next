@@ -5,6 +5,8 @@ let modalCounter = 0;
 export function useModalHistory(open: boolean, onClose: () => void) {
   const modalIdRef = useRef(`modal_${++modalCounter}`);
   const stateKey = `${modalIdRef.current}Open`;
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
 
   useEffect(() => {
     if (!open) return;
@@ -13,7 +15,7 @@ export function useModalHistory(open: boolean, onClose: () => void) {
 
     const handleBack = (e: PopStateEvent) => {
       if (!e.state?.[stateKey]) {
-        onClose();
+        onCloseRef.current();
       }
     };
 
@@ -24,7 +26,7 @@ export function useModalHistory(open: boolean, onClose: () => void) {
         );
         if (!dialogOpen) {
           e.preventDefault();
-          onClose();
+          onCloseRef.current();
         }
       }
     };
@@ -39,5 +41,5 @@ export function useModalHistory(open: boolean, onClose: () => void) {
         window.history.back();
       }
     };
-  }, [open, stateKey, onClose]);
+  }, [open, stateKey]);
 }

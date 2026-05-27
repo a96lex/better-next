@@ -43,6 +43,19 @@
   },
   "profile": {
     "logout": "Sortir",
-    "title": "Perfil"
+    "title": "Perfil",
+    "displayName": "Nom",
+    "displayNamePlaceholder": "El teu nom",
+    "save": "Desar",
+    "googleSignIn": "Inicia sessió amb Google",
+    "googleConnected": "Connectat amb Google"
+  },
+  "auth": {
+    "welcome": "Benvingut a Better",
+    "nameLabel": "El teu nom",
+    "namePlaceholder": "Introdueix el teu nom",
+    "continue": "Continuar",
+    "or": "o",
+    "googleSignIn": "Inicia sessió amb Google"
   }
 }

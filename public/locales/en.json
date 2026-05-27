@@ -43,6 +43,19 @@
   },
   "profile": {
     "logout": "Log out",
-    "title": "Profile"
+    "title": "Profile",
+    "displayName": "Display name",
+    "displayNamePlaceholder": "Your name",
+    "save": "Save",
+    "googleSignIn": "Sign in with Google",
+    "googleConnected": "Connected with Google"
+  },
+  "auth": {
+    "welcome": "Welcome to Better",
+    "nameLabel": "Your name",
+    "namePlaceholder": "Enter your name",
+    "continue": "Continue",
+    "or": "or",
+    "googleSignIn": "Sign in with Google"
   }
 }
